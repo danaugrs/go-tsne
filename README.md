@@ -15,7 +15,7 @@ The parameters are
 * Max number of iterations
 * Verbosity
 
-There are two ways to start the t-SNE embedding optimization. The regular way is to provide an `n` by `d` matrix `X`of data where each row is a datapoint and each column is a dimension:
+There are two ways to start the t-SNE embedding optimization. The regular way is to provide an `n` by `d` matrix `X` where each row is a datapoint and each column is a dimension:
 ```Go
     Y := t.EmbedData(X, nil)
 ```
