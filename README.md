@@ -38,7 +38,7 @@ Two examples are provided - `mnist2d` and `mnist3d`. They both use the same data
 To run an example, `cd` to the example's directory and `go run` it, e.g:
 ```
     cd examples/mnist2d
-    go run  mnist2d
+    go run mnist2d
 ```
 
 ### Support
