@@ -2,6 +2,8 @@
 
 A Go implementation of t-Distributed Stochastic Neighbor Embedding (t-SNE), a prize-winning technique for dimensionality reduction particularly well suited for visualizing high-dimensional datasets.
 
+![mnist2d](examples/mnist2d/mnist2d.gif)
+
 ### Usage
 Create the TSNE object:
 ```
