@@ -43,4 +43,5 @@ To run an example, `cd` to the example's directory and `go run` it, e.g:
 
 ### Support
 I hope you enjoy using and learning from go-tsne as much as I enjoyed writing it.
+
 If you come across any issues, please [report them](https://github.com/danaugrs/go-tsne/issues).
