@@ -24,7 +24,7 @@ const (
 type TSNE struct {
 	n            int     // Number of datapoints
 	dimsOut      int     // Number of dimensions in the low dimensional map
-	perplexity   float64 // Perplexity target the Gaussian kernels in high dimension
+	perplexity   float64 // Perplexity target for the Gaussian kernels in high dimension
 	learningRate float64 // Gradient descent learning rate
 	verbose      bool    // If true, then TSNE outputs progress data to stdout
 	maxIter      int     // Max number of gradient descent iterations
@@ -33,7 +33,7 @@ type TSNE struct {
 	Q *mat.Dense // Matrix of pairwise affinities in the low dimensional space (t-Student kernel)
 	Y *mat.Dense // The output embedding with dimsOut dimensions
 
-	PlogP float64 // The constant portion of the KL divergence, computed only once
+	PlogP float64    // The constant portion of the KL divergence, computed only once
 	dCdY  *mat.Dense // Gradient of the KL divergence with respect to the low dimensional map
 }
 
@@ -214,11 +214,6 @@ func (tsne *TSNE) run(stepFunc func(iter int, divergence float64, embedding mat.
 				break
 			}
 		}
-
-		//if iter == 100 {
-		//	tsne.P.Scale(0.25, tsne.P)
-		//	//tsne.perplexity = 1000
-		//}
 	}
 }
 
