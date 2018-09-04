@@ -2,7 +2,10 @@
 
 A Go implementation of t-Distributed Stochastic Neighbor Embedding (t-SNE), a prize-winning technique for dimensionality reduction particularly well suited for visualizing high-dimensional datasets.
 
-![mnist2d](examples/mnist2d/mnist2d.gif)
+<p float="left">
+  <img src="https://github.com/danaugrs/go-tsne/blob/master/examples/mnist2d/mnist2d.gif" alt="mnist2d" width="49%" />
+  <img src="https://github.com/danaugrs/go-tsne/blob/master/examples/mnist3d/mnist3d.gif" alt="mnist3d" width="49%" /> 
+</p>
 
 ### Usage
 Create the TSNE object:
@@ -20,7 +23,7 @@ There are two ways to start the t-SNE embedding optimization. The regular way is
     Y := t.EmbedData(X, nil)
 ```
 The alternative is to provide a distance matrix `D` directly:
-```Go
+```Gotgithub
     Y := t.EmbedDistances(D, nil)
 ```
 In either case, the returned matrix `Y` will contain the final embedding.
