@@ -1,6 +1,6 @@
 # go-tsne
 
-A Go implementation of t-Distributed Stochastic Neighbor Embedding (t-SNE), a prize-winning technique for dimensionality reduction particularly well suited for visualizing high-dimensional datasets.
+A Go implementation of [t-Distributed Stochastic Neighbor Embedding (t-SNE)](https://lvdmaaten.github.io/tsne/), a prize-winning technique for dimensionality reduction particularly well suited for visualizing high-dimensional datasets.
 
 <p float="left">
   <img src="https://github.com/danaugrs/go-tsne/blob/master/examples/mnist2d/mnist2d.gif" alt="mnist2d" width="49%" />
@@ -8,21 +8,25 @@ A Go implementation of t-Distributed Stochastic Neighbor Embedding (t-SNE), a pr
 </p>
 
 ### Usage
+Import this library:
+```
+    import "github.com/danaugrs/go-tsne/tsne"
+```
 Create the TSNE object:
 ```
     t := tsne.NewTSNE(2, 300, 300, true)
 ```
 The parameters are
 * Number of output dimensions
-* Target perplexity
+* Perplexity
 * Max number of iterations
 * Verbosity
 
-There are two ways to start the t-SNE embedding optimization. The regular way is to provide an `n` by `d` matrix `X` where each row is a datapoint and each column is a dimension:
+There are two ways to start the t-SNE embedding optimization. The regular way is to provide an `n` by `d` matrix where each row is a datapoint and each column is a dimension:
 ```Go
     Y := t.EmbedData(X, nil)
 ```
-The alternative is to provide a distance matrix `D` directly:
+The alternative is to provide a distance matrix directly:
 ```Gotgithub
     Y := t.EmbedDistances(D, nil)
 ```
