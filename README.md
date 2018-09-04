@@ -9,11 +9,11 @@ A Go implementation of [t-Distributed Stochastic Neighbor Embedding (t-SNE)](htt
 
 ### Usage
 Import this library:
-```
+```Go
     import "github.com/danaugrs/go-tsne/tsne"
 ```
 Create the TSNE object:
-```
+```Go
     t := tsne.NewTSNE(2, 300, 300, true)
 ```
 The parameters are
@@ -27,7 +27,7 @@ There are two ways to start the t-SNE embedding optimization. The regular way is
     Y := t.EmbedData(X, nil)
 ```
 The alternative is to provide a distance matrix directly:
-```Gotgithub
+```Go
     Y := t.EmbedDistances(D, nil)
 ```
 In either case, the returned matrix `Y` will contain the final embedding.
