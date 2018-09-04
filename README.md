@@ -32,7 +32,7 @@ For more fine-grained control, a step function can be provided in either case:
 The step function has access to the iteration, the current divergence, and the embedding optimized so far. Its return value can be set to true to indicate that the optimization should stop.
 
 ### Examples
-Two examples are provided - `mnist2d` and `mnist3d`. They both use the same data - a 2500 digit subset of [MNIST](http://yann.lecun.com/exdb/mnist/). `mnist2d` generates plots throughout the optimization process, and `mnist3d` shows the optimization happening in real-time, in 3D. `mnist3d` depends on [G3N](https://github.com/g3n/engine).
+Two examples are provided - `mnist2d` and `mnist3d`. They both use the same data - a subset of [MNIST](http://yann.lecun.com/exdb/mnist/) with 2500 handwritten digits. `mnist2d` generates plots throughout the optimization process, and `mnist3d` shows the optimization happening in real-time, in 3D. `mnist3d` depends on [G3N](https://github.com/g3n/engine).
 To run an example, `cd` to the example's directory and `go run` it, e.g:
 ```
     cd examples/mnist2d
