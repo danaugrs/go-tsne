@@ -23,7 +23,7 @@ import (
 	"image/color"
 )
 
-const Credits string = "Open source software by Daniel Salvadori (github.com/danaugrs/tsne). Written in Go and powered by g3n (github.com/g3n/engine)."
+const Credits string = "Open source software by Daniel Salvadori (github.com/danaugrs/go-tsne). Written in Go and powered by g3n (github.com/g3n/engine)."
 const Instructions string = "(PageUp/PageDown) Change sprite size\n(F) Toggle Fullscreen\n(R) Toggle Rotation\n(ESC) Quit"
 
 // ExampleMNIST3D is this example application displaying t-SNE being performed in real-time, in 3D,
@@ -50,7 +50,7 @@ func main() {
 	ex.app.Orbit().ZoomSpeed = 0
 
 	// Change background to white and reposition camera
-	ex.app.Gl().ClearColor(0.9,0.9,0.9,1)
+	ex.app.Gl().ClearColor(1,1,1,1)
 	ex.app.CameraPersp().SetPosition(0, 0, 12)
 
 	// Add lights to the scene
