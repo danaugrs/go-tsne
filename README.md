@@ -31,6 +31,7 @@ The alternative is to provide a distance matrix directly:
     Y := t.EmbedDistances(D, nil)
 ```
 In either case, the returned matrix `Y` will contain the final embedding.
+
 For more fine-grained control, a step function can be provided in either case:
 ```Go
     Y := t.EmbedData(X, func(iter int, divergence float64, embedding mat.Matrix) bool {
