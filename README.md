@@ -31,6 +31,7 @@ The alternative is to provide a distance matrix directly:
     Y := t.EmbedDistances(D, nil)
 ```
 In either case, the returned matrix `Y` will contain the final embedding.
+
 For more fine-grained control, a step function can be provided in either case:
 ```Go
     Y := t.EmbedData(X, func(iter int, divergence float64, embedding mat.Matrix) bool {
@@ -38,7 +39,8 @@ For more fine-grained control, a step function can be provided in either case:
     	return false
     })
 ```
-The step function has access to the iteration, the current divergence, and the embedding optimized so far. Its return value can be set to true to indicate that the optimization should stop.
+The step function has access to the iteration, the current divergence, and the embedding optimized so far.
+You can return `true` to halt the optimization.
 
 ### Examples
 Two examples are provided - `mnist2d` and `mnist3d`. They both use the same data - a subset of [MNIST](http://yann.lecun.com/exdb/mnist/) with 2500 handwritten digits. `mnist2d` generates plots throughout the optimization process, and `mnist3d` shows the optimization happening in real-time, in 3D. `mnist3d` depends on [G3N](https://github.com/g3n/engine).
