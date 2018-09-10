@@ -33,7 +33,7 @@ func main() {
 	X, Y := data.LoadMNIST()
 
 	// Pre-process the data with PCA (Principal Component Analysis)
-	// reducing the number of dimensions from 784 (28x28) to the top 100 principal components
+	// reducing the number of dimensions from 784 (28x28) to the top pcaComponents principal components
 	Xdense := mat.DenseCopyOf(X)
 	pcaTransform := pca.NewPCA(pcaComponents)
 	Xt := pcaTransform.FitTransform(Xdense)
