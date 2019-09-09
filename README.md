@@ -14,11 +14,12 @@ Import this library:
 ```
 Create the TSNE object:
 ```Go
-    t := tsne.NewTSNE(2, 300, 300, true)
+    t := tsne.NewTSNE(2, 300, 100, 300, true)
 ```
 The parameters are
 * Number of output dimensions
 * Perplexity
+* Learning rate
 * Max number of iterations
 * Verbosity
 
