@@ -8,14 +8,13 @@ import (
 	"math/rand"
 	"time"
 
-	"gonum.org/v1/plot"
-
 	"github.com/danaugrs/go-tsne/examples/data"
 	"github.com/danaugrs/go-tsne/tsne"
 	"github.com/sjwhitworth/golearn/pca"
+	
 	"gonum.org/v1/gonum/mat"
 	"gonum.org/v1/plot/plotter"
-
+	"gonum.org/v1/plot"
 	"gonum.org/v1/plot/plotutil"
 	"gonum.org/v1/plot/vg"
 )
@@ -53,20 +52,8 @@ func main() {
 
 }
 
-func getPoints(Y mat.Matrix) plotter.XYs {
-	r, _ := Y.Dims()
-	pts := make(plotter.XYs, r)
-	for j := 0; j < r; j++ { //}:= range Y.At(j, 0) {
-		pts[j].X = Y.At(j, 0)
-		pts[j].Y = Y.At(j, 1)
-	}
-	return pts
-}
-
-type xy struct{ X, Y float64 }
-
 // plotY2D plots the 2D embedding Y and saves an image of the plot with the specified filename.
-func plotY2D(Y mat.Matrix, labels mat.Matrix, filename string) {
+func plotY2D(Y, labels mat.Matrix, filename string) {
 
 	// Create a plotter for each of the 10 digit classes
 	classes := []float64{0, 1, 2, 3, 4, 5, 6, 7, 8, 9}
