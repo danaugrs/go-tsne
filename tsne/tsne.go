@@ -6,17 +6,18 @@
 package tsne
 
 import (
-	"gonum.org/v1/gonum/mat"
-	"math"
 	"fmt"
+	"math"
 	"math/rand"
+
+	"gonum.org/v1/gonum/mat"
 )
 
 const (
-	Epsilon = 1e-7
-	GreaterThanZero = 1e-12
-	EntropyTolerance = 1e-5
-	MaxBinarySearchSteps = 50
+	Epsilon                  = 1e-7
+	GreaterThanZero          = 1e-12
+	EntropyTolerance         = 1e-5
+	MaxBinarySearchSteps     = 50
 	InitialStandardDeviation = 1e-4
 )
 
@@ -90,7 +91,7 @@ func (tsne *TSNE) initSolution() {
 
 	// Compute and store the constant portion of the KL divergence
 	PlogP := mat.NewDense(tsne.n, tsne.n, nil)
-	PlogP.Clone(tsne.P)
+	PlogP.CloneFrom(tsne.P)
 	PlogP.Apply(func(i, j int, v float64) float64 {
 		return math.Log(v)
 	}, PlogP)
@@ -114,7 +115,7 @@ func (tsne *TSNE) d2p(D mat.Matrix, tol, perplexity float64) {
 	// Loop over all data points
 	for i := 0; i < tsne.n; i++ {
 		// Print progress
-		if tsne.verbose && i % 500 == 0 {
+		if tsne.verbose && i%500 == 0 {
 			fmt.Printf("Computing P-values for point %d of %d...\n", i, tsne.n)
 		}
 		// Perform a binary search for the Gaussian kernel precision (beta)
@@ -131,7 +132,7 @@ func (tsne *TSNE) d2p(D mat.Matrix, tol, perplexity float64) {
 				var p float64
 				if i == j {
 					p = 0
-				} else{
+				} else {
 					p = math.Exp(-Di.AtVec(j) * beta)
 				}
 				tsne.P.Set(i, j, p)
@@ -188,13 +189,13 @@ func (tsne *TSNE) d2p(D mat.Matrix, tol, perplexity float64) {
 // run performs batch gradient descent to reduce the Kullback-Leibler divergence between P and Q,
 // the high dimensional affinities and the low dimensional affinities respectively.
 func (tsne *TSNE) run(stepFunc func(iter int, divergence float64, embedding mat.Matrix) bool) {
-	
+
 	for iter := 0; iter < tsne.maxIter; iter++ {
 		// Compute KL divergence and update the gradient matrix
 		divergence := tsne.costGradient(tsne.P, tsne.Y)
 		// Step in the direction of negative gradient (times the learning rate)
 		scaledGrad := mat.NewDense(tsne.n, tsne.dimsOut, nil)
-		scaledGrad.Clone(tsne.dCdY)
+		scaledGrad.CloneFrom(tsne.dCdY)
 		scaledGrad.Scale(tsne.learningRate, scaledGrad)
 		tsne.Y.Sub(tsne.Y, scaledGrad)
 		// Reproject Y to have zero mean
@@ -238,14 +239,14 @@ func (tsne *TSNE) costGradient(P, Y mat.Matrix) float64 {
 	// Normalize Q matrix
 	sumQu := mat.Sum(Qu)
 	Q := mat.NewDense(n, n, nil)
-	Q.Clone(Qu)
-	Q.Scale(1 / sumQu, Q)
+	Q.CloneFrom(Qu)
+	Q.Scale(1/sumQu, Q)
 	Q.Apply(func(i, j int, v float64) float64 {
 		return math.Max(v, GreaterThanZero)
 	}, Q)
 	// Compute the the non-constant portion of the divergence
 	logQ := mat.NewDense(n, n, nil)
-	logQ.Clone(Q)
+	logQ.CloneFrom(Q)
 	logQ.Apply(func(i, j int, v float64) float64 {
 		return math.Log(v)
 	}, logQ)
@@ -264,9 +265,9 @@ func (tsne *TSNE) costGradient(P, Y mat.Matrix) float64 {
 		for c := 0; c < n; c++ {
 			m := mult.At(r, c)
 			for k := 0; k < d; k++ {
-				yDiff := Y.At(r,k) - Y.At(c,k)
+				yDiff := Y.At(r, k) - Y.At(c, k)
 				orig := tsne.dCdY.At(r, k)
-				tsne.dCdY.Set(r, k, orig + m*yDiff)
+				tsne.dCdY.Set(r, k, orig+m*yDiff)
 			}
 		}
 	}
@@ -281,7 +282,7 @@ func (tsne *TSNE) costGradient(P, Y mat.Matrix) float64 {
 // with the specified mean and standard deviation.
 func RandNormal(mu, std float64) float64 {
 
-	return mu + rand.NormFloat64() * std
+	return mu + rand.NormFloat64()*std
 }
 
 // Diagonal returns the diagonal elements of the specified matrix as a Vector.
