@@ -5,16 +5,18 @@ package main
 
 import (
 	"fmt"
-	"github.com/sjwhitworth/golearn/pca"
-	"github.com/danaugrs/go-tsne/tsne"
+	"math/rand"
+	"os"
+	"time"
+
 	"github.com/danaugrs/go-tsne/examples/data"
+	"github.com/danaugrs/go-tsne/tsne"
+	"github.com/sjwhitworth/golearn/pca"
 	"gonum.org/v1/gonum/mat"
 	"gonum.org/v1/plot"
 	"gonum.org/v1/plot/plotter"
 	"gonum.org/v1/plot/plotutil"
 	"gonum.org/v1/plot/vg"
-	"math/rand"
-	"time"
 )
 
 func main() {
@@ -38,10 +40,13 @@ func main() {
 	pcaTransform := pca.NewPCA(pcaComponents)
 	Xt := pcaTransform.FitTransform(Xdense)
 
+	// Create output directory if not exists
+	os.Mkdir("output", 0770)
+
 	// Create the t-SNE dimensionality reductor and embed the MNIST data in 2D
-	t := tsne.NewTSNE(2, perplexity, learningRate, 300,true)
+	t := tsne.NewTSNE(2, perplexity, learningRate, 300, true)
 	t.EmbedData(Xt, func(iter int, divergence float64, embedding mat.Matrix) bool {
-		if iter % 10 == 0 {
+		if iter%10 == 0 {
 			fmt.Printf("Iteration %d: divergence is %v\n", iter, divergence)
 			plotY2D(t.Y, Y, fmt.Sprintf("output/tsne-1-iteration-%d.png", iter))
 		}
@@ -49,8 +54,6 @@ func main() {
 	})
 
 }
-
-type xy struct{ X, Y float64 }
 
 // plotY2D plots the 2D embedding Y and saves an image of the plot with the specified filename.
 func plotY2D(Y, labels mat.Matrix, filename string) {
@@ -66,7 +69,7 @@ func plotY2D(Y, labels mat.Matrix, filename string) {
 	n, _ := Y.Dims()
 	for i := 0; i < n; i++ {
 		label := int(labels.At(i, 0))
-		classPlotters[label] = append(classPlotters[label], xy{Y.At(i, 0), Y.At(i, 1)})
+		classPlotters[label] = append(classPlotters[label], plotter.XY{Y.At(i, 0), Y.At(i, 1)})
 	}
 
 	// Create a plot and update title and axes
@@ -91,7 +94,8 @@ func plotY2D(Y, labels mat.Matrix, filename string) {
 	}
 
 	// Save the plot to a PNG file
-	if err := p.Save(8*vg.Inch, 8*vg.Inch, filename); err != nil {
+	err = p.Save(8*vg.Inch, 8*vg.Inch, filename)
+	if err != nil {
 		panic(err)
 	}
 }
