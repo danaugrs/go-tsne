@@ -52,7 +52,6 @@ func main() {
 		}
 		return false
 	})
-
 }
 
 // plotY2D plots the 2D embedding Y and saves an image of the plot with the specified filename.
