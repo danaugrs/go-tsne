@@ -97,7 +97,6 @@ func main() {
 		// Update the camera's aspect ratio
 		cam.SetAspect(float32(width) / float32(height))
 		// Update the position of the credits label
-		// creditsLabel.SetWidth(float32(width))
 		creditsLabel.SetPositionY(float32(height) - creditsLabel.ContentHeight() - 5)
 		// Update the position of the loading label
 		loadingLabel.SetPositionX((float32(width) - loadingLabel.ContentWidth()) / 2)
