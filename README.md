@@ -49,7 +49,7 @@ To run an example, `cd` to the example's directory, install the dependencies, an
 ```
     cd examples/mnist2d
     go get ./...
-    go run mnist2d
+    go run mnist2d.go
 ```
 
 ### Support
