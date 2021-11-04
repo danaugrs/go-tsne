@@ -9,7 +9,6 @@ import (
 	"os"
 	"time"
 
-	"github.com/danaugrs/go-tsne/examples/data"
 	"github.com/danaugrs/go-tsne/tsne"
 	"github.com/sjwhitworth/golearn/pca"
 	"gonum.org/v1/gonum/mat"
@@ -32,7 +31,7 @@ func main() {
 	rand.Seed(int64(time.Now().Nanosecond()))
 
 	// Load a subset of MNIST with 2500 records
-	X, Y := data.LoadMNIST()
+	X, Y := LoadMNIST()
 
 	// Pre-process the data with PCA (Principal Component Analysis)
 	// reducing the number of dimensions from 784 (28x28) to the top pcaComponents principal components
@@ -72,10 +71,7 @@ func plotY2D(Y, labels mat.Matrix, filename string) {
 	}
 
 	// Create a plot and update title and axes
-	p, err := plot.New()
-	if err != nil {
-		panic(err)
-	}
+	p := plot.New()
 	p.Title.Text = "t-SNE MNIST"
 	p.X.Label.Text = "X"
 	p.Y.Label.Text = "Y"
@@ -87,7 +83,7 @@ func plotY2D(Y, labels mat.Matrix, filename string) {
 	}
 
 	// Add class plotters to the plot
-	err = plotutil.AddScatters(p, classPlottersEI...)
+	err := plotutil.AddScatters(p, classPlottersEI...)
 	if err != nil {
 		panic(err)
 	}

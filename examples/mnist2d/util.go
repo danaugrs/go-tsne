@@ -1,13 +1,14 @@
-package data
+package main
 
 import (
-	"log"
-	"encoding/csv"
-	"gonum.org/v1/gonum/mat"
-	"os"
 	"bufio"
+	"encoding/csv"
 	"io"
+	"log"
+	"os"
 	"strconv"
+
+	"gonum.org/v1/gonum/mat"
 )
 
 func LoadMNIST() (mat.Matrix, mat.Matrix) {

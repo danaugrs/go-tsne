@@ -4,7 +4,6 @@
 package main
 
 import (
-	"github.com/danaugrs/go-tsne/examples/data"
 	"github.com/danaugrs/go-tsne/tsne"
 	"github.com/sjwhitworth/golearn/pca"
 	"gonum.org/v1/gonum/mat"
@@ -109,7 +108,7 @@ func main() {
 	rand.Seed(int64(time.Now().Nanosecond()))
 
 	// Load a subset of MNIST with 2500 records
-	X, Y := data.LoadMNIST()
+	X, Y := LoadMNIST()
 
 	// Create the digit sprites
 	ex.createDigitSprites(X, Y)
