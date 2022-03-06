@@ -1,4 +1,4 @@
-module github.com/danaugrs/go-tsne
+module github.com/danaugrs/go-tsne/tsne
 
 go 1.17
 
