@@ -45,11 +45,11 @@ You can return `true` to halt the optimization.
 
 ### Examples
 Two examples are provided - `mnist2d` and `mnist3d`. They both use the same data - a subset of [MNIST](http://yann.lecun.com/exdb/mnist/) with 2500 handwritten digits. `mnist2d` generates plots throughout the optimization process, and `mnist3d` shows the optimization happening in real-time, in 3D. `mnist3d` depends on [G3N](https://github.com/g3n/engine).
-To run an example, `cd` to the example's directory, install the dependencies, and `go run` it, e.g:
+To run an example, `cd` to the example's directory, build it, and execute it, e.g:
 ```
     cd examples/mnist2d
-    go get ./...
-    go run mnist2d.go
+    go build
+    ./mnist2d
 ```
 
 ### Support
